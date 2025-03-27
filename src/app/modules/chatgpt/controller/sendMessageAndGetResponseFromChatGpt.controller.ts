@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { myControllerHandler } from '../../../../utils/controller/myControllerHandler.utils';
-import { chatGptApiKey } from '../../../../data/environmentVariables';
 import axios from 'axios';
+import { CHAT_GPT_API_KEY } from '../../../../data/environmentVariables';
 
 export const sendMessageAndGetResponseFromChatGptController =
   myControllerHandler(async (req, res) => {
@@ -21,7 +21,7 @@ export const sendMessageAndGetResponseFromChatGptController =
       },
       {
         headers: {
-          Authorization: `Bearer ${chatGptApiKey}`,
+          Authorization: `Bearer ${CHAT_GPT_API_KEY}`,
           'Content-Type': 'application/json',
         },
       }

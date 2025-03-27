@@ -6,7 +6,7 @@ import config from './config';
 import { errorLogger, logger } from './shared/logger';
 import { socketHelper } from './app/socket/socket';
 import assignTechnicianBasedOnAdminMaxPrice from './app/modules/job/job-cron.service';
-import { myPort } from './data/environmentVariables';
+import { PORT } from './data/environmentVariables';
 
 // Handle uncaught exceptions
 process.on('uncaughtException', error => {
@@ -30,10 +30,10 @@ async function main() {
     assignTechnicianBasedOnAdminMaxPrice();
 
     // Start the server
-    server = app.listen(myPort, () => {
+    server = app.listen(PORT, () => {
       logger.info(
         colors.yellow(
-          `♻️  Application is running at http://170.64.139.81:${myPort}/`
+          `♻️  Application is running at http://170.64.139.81:${PORT}/`
         )
       );
     });

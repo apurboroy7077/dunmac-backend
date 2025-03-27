@@ -1,10 +1,7 @@
 import { z } from 'zod';
 import dotenv from 'dotenv';
 import path from 'path';
-import {
-  databaseUrlOfMantled,
-  databaseUrlOfWeatherConsumerReport,
-} from '../data/environmentVariables';
+import { MONGODB_URL } from '../data/environmentVariables';
 
 // Load environment variables from .env file
 dotenv.config({ path: path.join(__dirname, '../../.env') });
@@ -31,11 +28,13 @@ const envVarsSchema = z.object({
       required_error: 'MongoDB URL is required',
       invalid_type_error: 'MongoDB URL must be a string',
     })
-    .optional(),
-  JWT_SECRET: z.string({
-    required_error: 'JWT secret is required',
-    invalid_type_error: 'JWT secret must be a string',
-  }),
+    .default('mongodb://localhost:27017/testdb'), // Dummy MongoDB URL
+  JWT_SECRET: z
+    .string({
+      required_error: 'JWT secret is required',
+      invalid_type_error: 'JWT secret must be a string',
+    })
+    .default('dummy_secret_key'), // Dummy JWT Secret
   JWT_EXPIRATION_TIME: z
     .string({
       invalid_type_error: 'JWT_EXPIRATION_TIME must be a valid string',
@@ -54,14 +53,14 @@ const envVarsSchema = z.object({
       required_error: 'BCRYPT_SALT_ROUNDS is required',
     })
     .default('12'),
-  SMTP_HOST: z.string().optional(),
-  SMTP_PORT: z.string().optional(),
-  SMTP_USERNAME: z.string().optional(),
-  SMTP_PASSWORD: z.string().optional(),
-  EMAIL_FROM: z.string().optional(),
-  BACKEND_IP: z.string().optional(),
-  STRIPE_SECRET_KEY: z.string().optional(),
-  STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  SMTP_HOST: z.string().default('smtp.example.com'), // Dummy SMTP host
+  SMTP_PORT: z.string().default('587'), // Dummy SMTP port
+  SMTP_USERNAME: z.string().default('user@example.com'), // Dummy SMTP username
+  SMTP_PASSWORD: z.string().default('dummy_smtp_password'), // Dummy SMTP password
+  EMAIL_FROM: z.string().default('noreply@example.com'), // Dummy email sender
+  BACKEND_IP: z.string().default('192.168.1.1'), // Dummy backend IP
+  STRIPE_SECRET_KEY: z.string().default('dummy_stripe_secret_key'), // Dummy Stripe secret
+  STRIPE_WEBHOOK_SECRET: z.string().default('dummy_webhook_secret'), // Dummy Stripe webhook secret
 });
 
 // Validate the environment variables
@@ -76,7 +75,7 @@ export default {
   port: envVars.data.PORT,
   socket_port: envVars.data.SOCKET,
   mongoose: {
-    url: databaseUrlOfMantled,
+    url: MONGODB_URL,
     options: {
       // Optional Mongoose configurations can go here
     },

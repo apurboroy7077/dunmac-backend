@@ -2,13 +2,13 @@ import { StatusCodes } from 'http-status-codes';
 import { myControllerHandler } from '../../../../utils/controller/myControllerHandler.utils';
 import { getAdminRequestAndGiveSingleUserData } from '../../../../helpers_v2/admin-requests/getAdminRequestAndGiveSingleUserData.helper';
 import { checkIfUserRequestingAdmin2 } from '../../../../helpers/checkIfRequestedUserAdmin';
-import { jwtSecretKey } from '../../../../data/environmentVariables';
 import { userModelOfMantled } from '../../auth_v2/model/userModelOfMantled.model';
 import { formatDateAr7_2 } from '../../../../helpers_v2/others/formatDataAr7_2.helper';
+import { JWT_SECRET_KEY } from '../../../../data/environmentVariables';
 
 export const getSingleUserDataController2 = myControllerHandler(
   async (req, res) => {
-    await checkIfUserRequestingAdmin2(req, jwtSecretKey, userModelOfMantled);
+    await checkIfUserRequestingAdmin2(req, JWT_SECRET_KEY, userModelOfMantled);
     const { id } = req.params;
     console.log({ id });
     const userId = id;

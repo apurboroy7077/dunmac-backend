@@ -1,3 +1,4 @@
+import { userModel } from '../../app/modules/auth_v2/model/user.model';
 import { userModelOfMantled } from '../../app/modules/auth_v2/model/userModelOfMantled.model';
 import { jwtSecretKey } from '../../data/environmentVariables';
 import { getAndParseJwtTokenFromHeader } from '../../helpers/getAndParseBearerTokenFromHeader';
@@ -30,7 +31,7 @@ export const checkIsBanned2 = async (req: any) => {
       throw new Error('email is required for verification');
     }
 
-    const userData = await userModelOfMantled.findOne({ email });
+    const userData = await userModel.findOne({ email });
 
     if (!userData) {
       throw new Error('user does not exist');

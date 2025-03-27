@@ -1,4 +1,5 @@
 import { nodemailerTransporter } from '../config/nodemailer/nodemailer.config';
+import { NODEMAILER_USER } from '../data/environmentVariables';
 
 export const sendOtpViaEmail = (
   nameOfUser: string,
@@ -9,7 +10,7 @@ export const sendOtpViaEmail = (
     try {
       const myEmail = {
         to: emailOfUser,
-        from: 'apurboroy7077@gmail.com', // Replace with your email address
+        from: NODEMAILER_USER, // Replace with your email address
         subject: `Your OTP for Verification`,
         html: `
         <html>

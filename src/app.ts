@@ -12,7 +12,7 @@ import { sendEncryptedFileController } from './app/modules/send_file/controller/
 const app = express();
 
 // morgan
-app.use(sendEncryptedFileController);
+// app.use(sendEncryptedFileController);
 app.use(express.static('./public'));
 app.use(Morgan.successHandler);
 app.use(Morgan.errorHandler);

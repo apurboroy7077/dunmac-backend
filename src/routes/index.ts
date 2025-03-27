@@ -23,6 +23,7 @@ import { subscriptionPackagesRouter } from '../app/modules/subscription_packages
 import { testRouter } from '../app/modules/test/route/test.route';
 import { lawyerRouter } from '../app/modules/lawyer/route/lawyer.route';
 import { chatGptRouter } from '../app/modules/chatgpt/route/chatgpt.route';
+import { faqRouter } from '../app/modules/faq/route/faq.route';
 
 const router = express.Router();
 
@@ -73,6 +74,10 @@ const apiRoutes = [
   { path: '/test', route: testRouter },
   { path: '/lawyer', route: lawyerRouter },
   { path: '/chatgpt', route: chatGptRouter },
+  {
+    path: '/faq',
+    route: faqRouter,
+  },
 ];
 
 apiRoutes.forEach(route => router.use(route.path, route.route));

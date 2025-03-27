@@ -3,12 +3,12 @@ import { myControllerHandler } from '../../../../utils/controller/myControllerHa
 import { subscriptionPackageModel } from '../../subscription_packages/model/subscriptionPackages.model';
 import { userModelOfMantled } from '../../auth_v2/model/userModelOfMantled.model';
 import { checkIfUserRequestingAdmin2 } from '../../../../helpers/checkIfRequestedUserAdmin';
-import { jwtSecretKey } from '../../../../data/environmentVariables';
 import { PaymentModel } from '../../payment_v2/model/payment.model';
+import { JWT_SECRET_KEY } from '../../../../data/environmentVariables';
 
 export const getTransactionDataController = myControllerHandler(
   async (req, res) => {
-    await checkIfUserRequestingAdmin2(req, jwtSecretKey, userModelOfMantled);
+    await checkIfUserRequestingAdmin2(req, JWT_SECRET_KEY, userModelOfMantled);
     const { from, to } = req.query as any;
     const startIndex = parseInt(from, 10) || 0;
     const endIndex = parseInt(to, 10) || 0;

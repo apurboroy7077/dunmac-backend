@@ -4,7 +4,7 @@ import { ar7id } from '../../../../helpers/ar7Id';
 const userSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true, default: () => ar7id() },
   email: { type: String, required: true, unique: true },
-  passwordHash: { type: String, required: true },
+  passwordHash: { type: String, required: false },
   role: {
     type: String,
     enum: ['user', 'collaborator', 'admin'],
@@ -52,4 +52,4 @@ const userSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-export const userModelOfMantled = mongoose.model('users', userSchema);
+export const userModelOfMantled = mongoose.model('userssss_old', userSchema);

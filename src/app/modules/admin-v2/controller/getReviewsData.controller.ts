@@ -2,12 +2,12 @@ import { StatusCodes } from 'http-status-codes';
 import sendResponse from '../../../../shared/sendResponse';
 import { myControllerHandler } from '../../../../utils/controller/myControllerHandler.utils';
 import { checkIfUserRequestingAdmin } from '../../../../helpers/checkIfRequestedUserAdmin';
-import { jwtSecretKey } from '../../../../data/environmentVariables';
 import { reviewDataModelOfWeatherConsumerReport } from '../../review/model/review.model';
+import { JWT_SECRET_KEY } from '../../../../data/environmentVariables';
 
 export const getReviewsDataForAdminController = myControllerHandler(
   async (req, res) => {
-    await checkIfUserRequestingAdmin(req, jwtSecretKey);
+    await checkIfUserRequestingAdmin(req, JWT_SECRET_KEY);
     const { from, to } = req.query as any;
     const startIndex = parseInt(from, 10) || 0;
     const endIndex = parseInt(to, 10) || 0;
