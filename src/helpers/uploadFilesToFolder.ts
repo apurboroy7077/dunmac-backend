@@ -2,9 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import sharp from 'sharp';
-import { encryptionSecretKey } from '../data/environmentVariables';
 
-const algorithm = 'aes-256-cbc';
+const algorithm = 'aes-256-cbc'; // No longer needed for encryption
 
 // Define the function type
 type saveFileToFolderType = (
@@ -31,6 +30,7 @@ export const saveFileToFolder: saveFileToFolderType = async (
         '.bmp',
         '.tiff',
         '.webp',
+        '.avif',
       ].includes(fileExtension);
       const newFilename = isImage
         ? `${randomName}.webp`
@@ -44,7 +44,7 @@ export const saveFileToFolder: saveFileToFolderType = async (
       let fileBuffer;
 
       if (isImage) {
-        // Convert image to WebP before encryption
+        // Convert image to WebP before saving
         const imageBuffer = await sharp(userImage.filepath)
           .webp({ quality: 80 }) // Adjust quality as needed
           .toBuffer();
@@ -53,17 +53,8 @@ export const saveFileToFolder: saveFileToFolderType = async (
         fileBuffer = await fs.promises.readFile(userImage.filepath);
       }
 
-      // Encrypt the file
-      const iv = crypto.randomBytes(16);
-      const cipher = crypto.createCipheriv(algorithm, encryptionSecretKey, iv);
-      const encryptedBuffer = Buffer.concat([
-        iv,
-        cipher.update(fileBuffer),
-        cipher.final(),
-      ]);
-
-      // Save the encrypted file
-      await fs.promises.writeFile(destPath, encryptedBuffer);
+      // Save the file directly (no encryption)
+      await fs.promises.writeFile(destPath, fileBuffer);
 
       resolve(destPath);
     } catch (error) {

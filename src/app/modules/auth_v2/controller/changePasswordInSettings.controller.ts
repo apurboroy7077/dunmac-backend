@@ -21,7 +21,7 @@ export const changePasswordInSettingsController = myControllerHandler(
     }
 
     const { email } = authData;
-    const userData = await userModelOfMantled.findOne({ email });
+    const userData: any = await userModelOfMantled.findOne({ email });
 
     if (!userData) {
       return res.status(StatusCodes.NOT_FOUND).json({

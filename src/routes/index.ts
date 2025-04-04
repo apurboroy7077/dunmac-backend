@@ -24,6 +24,8 @@ import { testRouter } from '../app/modules/test/route/test.route';
 import { lawyerRouter } from '../app/modules/lawyer/route/lawyer.route';
 import { chatGptRouter } from '../app/modules/chatgpt/route/chatgpt.route';
 import { faqRouter } from '../app/modules/faq/route/faq.route';
+import { propertyBlogRouter } from '../app/modules/property_blog/route/blogs.route';
+import { propertyRouter } from '../app/modules/property/route/property.route';
 
 const router = express.Router();
 
@@ -77,6 +79,14 @@ const apiRoutes = [
   {
     path: '/faq',
     route: faqRouter,
+  },
+  {
+    path: '/property-blog',
+    route: propertyBlogRouter,
+  },
+  {
+    path: '/property',
+    route: propertyRouter,
   },
 ];
 

@@ -46,3 +46,21 @@ export const getAndParseTokenFromHeader2: fType2 = (
     }
   });
 };
+export const getAndParseTokenFromHeader3: fType2 = (
+  req,
+  jwtSecretKey,
+  keyName
+) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const authHeader = req.headers[keyName];
+      const authToken = refineToken(authHeader) as string;
+      console.log(authToken);
+      const userData = (await parseJwtToken(authToken, jwtSecretKey)) as any;
+      resolve(userData);
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};

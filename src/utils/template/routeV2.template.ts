@@ -1,8 +1,8 @@
 import express from 'express';
 import { myController } from './controller.template';
 
-const myRouterV2 = express.Router();
+const router = express.Router();
 
-myRouterV2.post('/sign-in', myController);
+router.post('/sign-in', myController);
 
-export { myRouterV2 };
+export const myRouter = router;

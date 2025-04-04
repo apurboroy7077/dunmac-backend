@@ -123,7 +123,8 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     typeof error === 'string' &&
     (error.includes('please enter') ||
       error.includes('invalid') ||
-      error.includes('not valid'))
+      error.includes('not valid') ||
+      error.includes('please give'))
   ) {
     code = StatusCodes.BAD_REQUEST;
     message = error;
@@ -131,7 +132,8 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     error instanceof Error &&
     (error.message.includes('please enter') ||
       error.message.includes('invalid') ||
-      error.message.includes('not valid'))
+      error.message.includes('not valid') ||
+      error.message.includes('please give'))
   ) {
     code = StatusCodes.BAD_REQUEST;
     message = error.message;

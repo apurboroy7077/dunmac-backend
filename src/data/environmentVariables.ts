@@ -26,3 +26,6 @@ export const encryptionSecretKey = Buffer.from(RAW_ENCRYPTION_KEY, 'hex');
 export const frontendAddress = FRONTEND_ADDRESS;
 export const secretKeyOfChangingPasswordToken =
   SECRET_KEY_OF_CHANGING_PASSWORD_TOKEN;
+export const ZOOPLA_API_KEY = process.env.ZOOPLA_API_KEY;
+export const PATH_OF_USER_PROFILE_PICTURE_FOLDER = process.env
+  .PATH_OF_USER_PROFILE_PICTURE_FOLDER as string;

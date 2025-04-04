@@ -27,6 +27,8 @@ import { signIn2Controller } from '../controller/signIn2.controller';
 import { forgotPasswordController2 } from '../controller/forgotPassword2.controller';
 import { verifyOtpOfForgotPasswordController2 } from '../controller/verifyOtpOfForgotPassword2.controller';
 import { changePasswordOfForgotPasswordController } from '../controller/changePasswordOfForgotPassword.controller';
+import { updateProfileController2 } from '../controller/updateProfile2.controller';
+import { changePasswordInSettingsController2 } from '../controller/changePasswordInSettings2.controller';
 
 const authV2Router = express.Router();
 
@@ -54,12 +56,16 @@ authV2Router.post(
   changePasswordOfForgotPasswordController
 );
 authV2Router.post('/change-password', changePasswordInSettingsController);
+authV2Router.post(
+  '/change-password-in-settings',
+  changePasswordInSettingsController2
+);
 authV2Router.post('/vault/sign-in', vaultSignInController);
 authV2Router.post(
   '/vault/fingerprint-verification',
   fingerPrintVerificationController
 );
-authV2Router.post('/update-profile', updateProfileController);
+authV2Router.post('/update-profile', updateProfileController2);
 authV2Router.post('/update-vault-password', updateVaultPasswordController);
 authV2Router.post('/sign-in-with-google', signInWithGoogleController);
 authV2Router.post('/sign-in-with-microsoft', signInWithMicrosoftController);

@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   email: { type: String, required: true, unique: true },
+  phone: {
+    type: String,
+    required: false,
+  },
   passwordHash: { type: String, required: false },
   role: {
     type: String,
@@ -24,6 +28,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
     required: true,
+  },
+  profilePictureUrl: {
+    type: String,
+    required: false,
   },
 });
 
