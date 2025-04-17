@@ -26,6 +26,8 @@ import { chatGptRouter } from '../app/modules/chatgpt/route/chatgpt.route';
 import { faqRouter } from '../app/modules/faq/route/faq.route';
 import { propertyBlogRouter } from '../app/modules/property_blog/route/blogs.route';
 import { propertyRouter } from '../app/modules/property/route/property.route';
+import { propertyChatRouter } from '../app/modules/property_chat/route/propertyChat.route';
+import { privacyTermsRouter } from '../app/modules/privacy_terms/route/privacyTerm.route';
 
 const router = express.Router();
 
@@ -87,6 +89,14 @@ const apiRoutes = [
   {
     path: '/property',
     route: propertyRouter,
+  },
+  {
+    path: '/property-chat',
+    route: propertyChatRouter,
+  },
+  {
+    path: '/privacy-terms',
+    route: privacyTermsRouter,
   },
 ];
 

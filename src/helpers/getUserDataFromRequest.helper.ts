@@ -19,3 +19,21 @@ export const getUserDataFromRequest = (req: any) => {
     }
   });
 };
+export const getUserDataFromRequestIfAny = (req: any) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const authHeader = req.headers.authorization;
+      if (!authHeader) {
+        resolve(null);
+        return;
+      }
+      const authData = await getAndParseJwtTokenFromHeader(req, JWT_SECRET_KEY);
+      const { email } = authData;
+      const userData = await userModel.findOne({ email });
+      resolve(userData);
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};

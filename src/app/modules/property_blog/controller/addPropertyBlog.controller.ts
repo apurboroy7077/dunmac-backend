@@ -3,9 +3,11 @@ import { myControllerHandler } from '../../../../utils/controller/myControllerHa
 import { getDataFromFormOfRequest } from '../../../../helpers/getDataFromFormAR7';
 import { saveAndGiveRefinedUrl } from '../../../../helpers/saveAndGiveRefinedLink';
 import { propertyBlogModel } from '../model/propertyBlog.model';
+import { checkIfUserRequestingAdmin3 } from '../../../../helpers/checkIfRequestedUserAdmin';
 
 export const addPropertyBlogController = myControllerHandler(
   async (req, res) => {
+    await checkIfUserRequestingAdmin3(req);
     const propertyData = await getDataFromFormOfRequest(req);
     const { fields, files } = propertyData;
     const { name, description } = fields;

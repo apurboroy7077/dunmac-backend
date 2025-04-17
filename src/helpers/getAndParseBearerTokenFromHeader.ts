@@ -1,3 +1,4 @@
+import { JWT_SECRET_KEY } from '../data/environmentVariables';
 import { parseJwtToken } from './jwtAR7';
 import { refineToken } from './refineToken';
 
@@ -57,6 +58,20 @@ export const getAndParseTokenFromHeader3: fType2 = (
       const authToken = refineToken(authHeader) as string;
       console.log(authToken);
       const userData = (await parseJwtToken(authToken, jwtSecretKey)) as any;
+      resolve(userData);
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};
+export const getAndParseTokenFromHeader4: fType2 = req => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const authHeader = req.headers.authorization;
+      const authToken = refineToken(authHeader) as string;
+      console.log(authToken);
+      const userData = (await parseJwtToken(authToken, JWT_SECRET_KEY)) as any;
       resolve(userData);
     } catch (error) {
       console.log(error);

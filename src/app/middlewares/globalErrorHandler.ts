@@ -137,6 +137,12 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   ) {
     code = StatusCodes.BAD_REQUEST;
     message = error.message;
+  } else if (typeof error === 'string' && error.includes('is already')) {
+    code = StatusCodes.CONFLICT;
+    message = error;
+  } else if (error instanceof Error && error.message.includes('is already')) {
+    code = StatusCodes.CONFLICT;
+    message = error.message;
   }
 
   errorMessages = [{ path: 'unknown', message }];

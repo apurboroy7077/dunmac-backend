@@ -29,3 +29,6 @@ export const secretKeyOfChangingPasswordToken =
 export const ZOOPLA_API_KEY = process.env.ZOOPLA_API_KEY;
 export const PATH_OF_USER_PROFILE_PICTURE_FOLDER = process.env
   .PATH_OF_USER_PROFILE_PICTURE_FOLDER as string;
+export const ZOOPLA_RAPID_API_BASE_URL = process.env.ZOOPLA_RAPID_API_BASE_URL;
+export const ZOOPLA_RAPID_API_KEY = process.env.ZOOPLA_RAPID_API_KEY;
+export const ZOOPLA_RAPID_API_HOST = process.env.ZOOPLA_RAPID_API_HOST;
