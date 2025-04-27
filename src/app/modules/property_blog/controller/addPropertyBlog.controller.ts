@@ -9,6 +9,7 @@ export const addPropertyBlogController = myControllerHandler(
   async (req, res) => {
     await checkIfUserRequestingAdmin3(req);
     const propertyData = await getDataFromFormOfRequest(req);
+    console.log(propertyData);
     const { fields, files } = propertyData;
     const { name, description } = fields;
     const { images } = files;

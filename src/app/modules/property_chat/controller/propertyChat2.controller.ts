@@ -6,8 +6,10 @@ import { chatHistoryModel } from '../model/chatHistory.model';
 import { getLocationInfoIfThereIsAny2 } from '../../../../helpers_v2/property_begger/getLocationInfoIfAny2.helper';
 import { askChatGpt } from '../../../../helpers_v2/property_begger/askChatGpt.helper';
 import { zooplaRapidApiAR7_2 } from '../../../../helpers_v2/zoopla/zooplaRapidApi.helper';
+import { checkIsBanned2 } from '../../../../helpers_v2/auth/checkIsBanned.helper';
 
 export const propertyChatController2 = myControllerHandler(async (req, res) => {
+  checkIsBanned2(req);
   // Get user data from request (if any)
   const userData = (await getUserDataFromRequestIfAny(req)) as any;
 
@@ -61,13 +63,15 @@ export const propertyChatController2 = myControllerHandler(async (req, res) => {
   // Initialize variables for AI's reply and property data
   let aiReply;
   let propertyData = null;
-
+  let messageSender: any;
   // If no location, ask AI for a response
   if (!location) {
     aiReply = await askChatGpt(last10MessagesHistory);
+    messageSender = 'ai';
   } else {
     // If there's a location, fetch property data based on the location
     propertyData = await zooplaRapidApiAR7_2(locationData);
+    messageSender = 'zoopla';
   }
 
   // Save the user's message to chat history
@@ -100,6 +104,7 @@ export const propertyChatController2 = myControllerHandler(async (req, res) => {
     message: aiReply,
     success: true,
     data: {},
+    sender: messageSender,
     conversationData,
     propertyData,
   };

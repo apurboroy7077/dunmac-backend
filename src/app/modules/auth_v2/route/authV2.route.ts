@@ -29,6 +29,8 @@ import { verifyOtpOfForgotPasswordController2 } from '../controller/verifyOtpOfF
 import { changePasswordOfForgotPasswordController } from '../controller/changePasswordOfForgotPassword.controller';
 import { updateProfileController2 } from '../controller/updateProfile2.controller';
 import { changePasswordInSettingsController2 } from '../controller/changePasswordInSettings2.controller';
+import { getOwnDataWithAuthTokenController } from '../controller/getOwnDataWithAuthToken.controller';
+import { changePasswordInSettingsController3 } from '../controller/changePasswordInSettings3.controller';
 
 const authV2Router = express.Router();
 
@@ -60,6 +62,10 @@ authV2Router.post(
   '/change-password-in-settings',
   changePasswordInSettingsController2
 );
+authV2Router.post(
+  '/change-password-in-settings-3',
+  changePasswordInSettingsController3
+);
 authV2Router.post('/vault/sign-in', vaultSignInController);
 authV2Router.post(
   '/vault/fingerprint-verification',
@@ -73,6 +79,10 @@ authV2Router.post('/sign-up-or-in-with-google', signUpOrInWithGoogleController);
 authV2Router.post(
   '/sign-up-or-in-with-microsoft',
   signUpOrInWithMicrosoftController
+);
+authV2Router.get(
+  '/get-own-data-with-authtoken',
+  getOwnDataWithAuthTokenController
 );
 
 export { authV2Router };

@@ -3,17 +3,18 @@ import { myControllerHandler } from '../../../../utils/controller/myControllerHa
 import { userDataModelOfWeatherConsumerReport } from '../../user/userModelOfWeatherConsumerReport.model';
 import { hashMyPassword } from '../../../../helpers/passwordHashing';
 import { userModelOfMantled } from '../../auth_v2/model/userModelOfMantled.model';
+import { userModel } from '../../auth_v2/model/user.model';
 
 export const addSuperAdminController = myControllerHandler(async (req, res) => {
   console.log(req.body);
-  const { name, role, email, password } = req.body;
+  const { name, email, password } = req.body;
   const passwordHash = await hashMyPassword(password);
 
-  await userModelOfMantled.create({
-    fullName: name,
-    role: role,
-    email: email,
-    passwordHash: passwordHash,
+  await userModel.create({
+    name,
+    email,
+    passwordHash,
+    role: 'admin',
   });
 
   const myResponse = {
