@@ -32,3 +32,6 @@ export const PATH_OF_USER_PROFILE_PICTURE_FOLDER = process.env
 export const ZOOPLA_RAPID_API_BASE_URL = process.env.ZOOPLA_RAPID_API_BASE_URL;
 export const ZOOPLA_RAPID_API_KEY = process.env.ZOOPLA_RAPID_API_KEY;
 export const ZOOPLA_RAPID_API_HOST = process.env.ZOOPLA_RAPID_API_HOST;
+export const ZOOPLA_P_RAPID_API_URL = process.env.ZOOPLA_P_RAPID_API_URL;
+export const ZOOPLA_P_RAPID_API_HOST = process.env.ZOOPLA_P_RAPID_API_HOST;
+export const ZOOPLA_P_RAPID_API_KEY = process.env.ZOOPLA_P_RAPID_API_KEY;

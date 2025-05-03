@@ -11,8 +11,9 @@ import {
   zooplaRapidApiAR7_4,
 } from '../../../../helpers_v2/zoopla/zooplaRapidApi.helper';
 import { checkIsBanned2 } from '../../../../helpers_v2/auth/checkIsBanned.helper';
+import { getLocationInfoIfThereIsAny3 } from '../../../../helpers_v2/property_begger/getLocationInfoIfAny3.helper';
 
-export const propertyChatController2 = myControllerHandler(async (req, res) => {
+export const propertyChatController3 = myControllerHandler(async (req, res) => {
   await checkIsBanned2(req);
   // Get user data from request (if any)
   const userData = (await getUserDataFromRequestIfAny(req)) as any;
@@ -59,11 +60,11 @@ export const propertyChatController2 = myControllerHandler(async (req, res) => {
   ];
 
   // Get location info if there is any in the chat history
-  const locationData = (await getLocationInfoIfThereIsAny2(
+  const locationData = (await getLocationInfoIfThereIsAny3(
     last10MessagesHistory
   )) as any;
   const location = locationData.location;
-
+  console.log(locationData);
   // Initialize variables for AI's reply and property data
   let aiReply;
   let propertyData = null;

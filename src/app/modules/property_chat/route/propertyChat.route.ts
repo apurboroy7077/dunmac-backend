@@ -7,11 +7,12 @@ import { getChatHistoryController } from '../controller/getChatHistory.controlle
 import { getChatsOfSpecificConversationController } from '../controller/getChatsOfSpecificConversation.controller';
 import { getChatsOfSpecificConversationWithPaginationController } from '../controller/getChatsOfSpecificConversationWithPagination.controller';
 import { getConversationHistoryWithPaginationController } from '../controller/getConversationHistoryWithPagination.controller';
+import { propertyChatController3 } from '../controller/propertyChat3.controller';
 
 const router = express.Router();
 
 router.post('/chat-about-property', propertyChatController);
-router.post('/chat-about-property-2', propertyChatController2);
+router.post('/chat-about-property-2', propertyChatController3);
 router.post(
   '/get-property-data-with-zoopla-rapid-api',
   getPropertyDataWithZooplaRapidController

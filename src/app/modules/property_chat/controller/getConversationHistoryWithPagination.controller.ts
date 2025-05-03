@@ -6,7 +6,7 @@ import { chatHistoryModel } from '../model/chatHistory.model';
 
 export const getConversationHistoryWithPaginationController =
   myControllerHandler(async (req, res) => {
-    const authData = (await getUserDataFromRequest(req)) as any;
+    let authData = (await getUserDataFromRequest(req)) as any;
     const { id } = authData;
     const { page, limit } = req.query;
 
