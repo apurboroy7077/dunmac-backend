@@ -173,3 +173,75 @@ export const zooplaRapidApiAR7_4 = (locationData: any) => {
     }
   });
 };
+export const zooplaRapidApiAR7_5 = (locationData: any) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log(locationData);
+      let {
+        location,
+        price_min,
+        price_max,
+        beds_min,
+        beds_max,
+        bathrooms_min,
+        bathrooms_max,
+        status,
+      } = locationData;
+      const priceRange = `${price_min ? price_min : ''},${
+        price_max ? price_max : ''
+      }`;
+      const bedsRange = `${beds_min ? beds_min : ''},${
+        beds_max ? beds_max : ''
+      }`;
+      const bathroomsRange = `${bathrooms_min ? bathrooms_min : ''},${
+        bathrooms_max ? bathrooms_max : ''
+      }`;
+      const lastUrl = status === 'for_rent' ? 'rent' : 'sale';
+      const response = await axios.get(
+        `${ZOOPLA_RAPID_API_BASE_URL}/properties/search-${lastUrl}`, // The endpoint used in your second example
+        {
+          params: {
+            geoIdentifier: location, // Location for the search
+            geoLabel: location, // Location identifier for filtering
+            price_min,
+            price_max,
+            bedrooms_min: beds_min,
+            bedrooms_max: beds_max,
+            bathrooms_min,
+            bathrooms_max,
+            // priceRange: priceRange,
+            // bedrooms: bedsRange,
+            // bathrooms: bathroomsRange,
+            // category: 'residential', // Property category (e.g., residential)
+            // furnishedState: 'Any', // Filter by furnished state if necessary
+            // sortOrder: 'newest_listings', // Sort by newest listings
+            // page: 1, // Page number, could be dynamic if needed
+            // priceMin: price_min, // Minimum price from input data
+            // priceMax: price_max, // Maximum price from input data
+            // bedsMin: beds_min, // Minimum number of beds from input data
+            // // includeRented: true,
+            // listing_status: 'rent',
+          },
+          headers: {
+            'x-rapidapi-host': ZOOPLA_RAPID_API_HOST,
+            'x-rapidapi-key': `${ZOOPLA_RAPID_API_KEY}`, // API key for authentication
+          },
+        }
+      );
+
+      // Extract property data
+      console.log(response.data.data.analyticsTaxonomy);
+      let propertyData = response.data.data.listings;
+
+      // If available, concatenate regular and featured listings
+      propertyData = propertyData ? [...propertyData.regular] : [];
+
+      // Resolve with the property data
+      // console.log(propertyData);
+      resolve(propertyData);
+    } catch (error) {
+      console.log(error);
+      reject(error); // Reject the promise if an error occurs
+    }
+  });
+};
