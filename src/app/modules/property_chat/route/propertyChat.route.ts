@@ -8,6 +8,7 @@ import { getChatsOfSpecificConversationController } from '../controller/getChats
 import { getChatsOfSpecificConversationWithPaginationController } from '../controller/getChatsOfSpecificConversationWithPagination.controller';
 import { getConversationHistoryWithPaginationController } from '../controller/getConversationHistoryWithPagination.controller';
 import { propertyChatController3 } from '../controller/propertyChat3.controller';
+import { deleteAllHistoryController } from '../controller/deleteAllHistory.controller';
 
 const router = express.Router();
 
@@ -31,5 +32,6 @@ router.get(
   '/get-chats-of-specific-conversation-with-pagination',
   getChatsOfSpecificConversationWithPaginationController
 );
+router.post('/history/delete/all', deleteAllHistoryController);
 
 export const propertyChatRouter = router;
