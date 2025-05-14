@@ -1,0 +1,1 @@
+ssh -i ./deploy.pem azureuser@172.167.175.98
