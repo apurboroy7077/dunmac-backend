@@ -8,6 +8,7 @@ import notFound from './app/middlewares/notFount';
 import path from 'path';
 import morgan from 'morgan';
 import { sendEncryptedFileController } from './app/modules/send_file/controller/sendEncryptedFile.controller';
+import { arrayOfAllowedOrigins } from './data/allowedCors';
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use(morgan('dev'));
 // body parser
 app.use(
   cors({
-    origin: '*',
+    origin: arrayOfAllowedOrigins,
     // credentials: true,
   })
 );
