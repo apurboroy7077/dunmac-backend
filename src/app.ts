@@ -21,7 +21,7 @@ app.use(morgan('dev'));
 app.use(
   cors({
     origin: '*',
-    // credentials: true,
+    credentials: true,
   })
 );
 app.use(express.json());
