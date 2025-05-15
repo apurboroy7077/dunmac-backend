@@ -21,8 +21,8 @@ app.use(morgan('dev'));
 // body parser
 app.use(
   cors({
-    origin: arrayOfAllowedOrigins,
-    // credentials: true,
+    origin: '*',
+    credentials: true,
   })
 );
 app.use(express.json());
